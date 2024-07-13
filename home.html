@@ -26,23 +26,23 @@
     <img class="flower" src="./images/6.jpg" alt="Hình ảnh động">
 
     <!-- Hình ảnh lá thư -->
-    <img id="letterImg" class="letter-img" src="./images/7.png" alt="Hình ảnh lá thư" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <div id="letterImg" class="letter-img" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <img src="./images/7.png" alt="Hình ảnh lá thư">
+    </div>
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Modal title</h5>
+                    <h5 class="modal-title">Thông điệp từ lá thư</h5>
                     <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <!-- Nội dung modal -->
-                    <p>Mô tả hoặc nội dung của hình ảnh lá thư.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" id="closeModalBtn">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <div id="modalContent">
+                        <!-- Nội dung sẽ tự động thay đổi sau 2 giây -->
+                    </div>
                 </div>
             </div>
         </div>
@@ -53,13 +53,38 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Sau 7 giây, hiển thị hình ảnh lá thư
             setTimeout(function() {
                 var letterImg = document.getElementById('letterImg');
                 letterImg.style.display = 'block';
-            }, 7000); // 7000 milliseconds = 7 seconds
+            }, 7000);
+
+            // Lắng nghe sự kiện click vào hình ảnh lá thư
+            document.getElementById('letterImg').addEventListener('click', function() {
+                var myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {});
+                myModal.show(); // Mở modal
+                
+                // Sau 2 giây, hiển thị nội dung từng ký tự một
+                setTimeout(function() {
+                    var modalContent = document.getElementById('modalContent');
+                    var text = 'Mô tả hoặc nội dung của hình ảnh lá thư sẽ tự động chạy sau 2 giây.';
+                    typeEffect(modalContent, text);
+                }, 2000); // 2000 milliseconds = 2 seconds
+            });
+
+            // Hàm để hiển thị nội dung từng ký tự một
+            function typeEffect(element, text) {
+                var index = 0;
+                var interval = setInterval(function() {
+                    element.textContent += text[index++];
+                    if (index === text.length) {
+                        clearInterval(interval);
+                    }
+                }, 100); // Thời gian chờ giữa mỗi ký tự là 100ms
+            }
 
             // Lắng nghe sự kiện click vào button Close trong modal
-            document.getElementById('closeModalBtn').addEventListener('click', function() {
+            document.querySelector('.modal .btn-close').addEventListener('click', function() {
                 // Reload lại trang khi đóng modal
                 location.reload();
             });
