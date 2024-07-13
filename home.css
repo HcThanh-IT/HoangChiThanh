@@ -1,50 +1,56 @@
-@media (max-width: 767px) {
-    
-:root{
+:root {
     --cl-pink: #e372ba;
 }
-.sun{
-    position: absolute; /* Định vị tuyệt đối */
-        top: 0; /* Đặt vị trí phía trên cùng của modal */
-        right: 0; /* Đặt vị trí bên trái cùng của modal */
+.sun {
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 .bee {
     position: absolute;
     top: 50%;
-    left: -120px; /* Đặt con ong bắt đầu từ ngoài biên trái */
-    width: 120px; /* Chiều rộng của con ong */
-    height: auto; /* Chiều cao tự động tính theo tỷ lệ */
-    transform: scaleX(-1) !important; /* Đảo ngược hình ảnh để con ong quay đầu về bên trái */
-    animation: fly 7s linear; /* Sử dụng animation có tên fly, thời gian 8s, lặp vô hạn */
+    left: -120px;
+    width: 120px; 
+    height: auto; 
+    animation: fly 7s linear; 
 }
-.flower{
+.flower {
     width: 100%;
     position: absolute;
     bottom: 0;
-    background-size: cover; /* Hiển thị hình ảnh đầy đủ không bị méo */
-    background-repeat: no-repeat; /* Không lặp lại hình nền */
+    background-size: cover;
+    background-repeat: no-repeat;
 }
-/* Định nghĩa keyframes để xác định đường bay của con ong */
 @keyframes fly {
     0% { 
-        transform: translateY(0) translateX(0); /* Lúc đầu, con ong ở vị trí ban đầu */
+        transform: translateY(0) translateX(0) ;
     }
     25% {
-        transform: translateY(-30px) translateX(20vw); /* Lúc 25%, con ong bay lên và sang phải */
+        transform: translateY(-30px) translateX(20vw) ;
     }
     50% {
-        transform: translateY(-60px) translateX(40vw); /* Lúc 50%, con ong bay lên cao hơn và tiếp tục sang phải */
+        transform: translateY(-60px) translateX(40vw) ;
     }
     75% {
-        transform: translateY(-30px) translateX(60vw); /* Lúc 75%, con ong bay xuống và sang phải */
+        transform: translateY(-30px) translateX(60vw) ;
     }
     100% {
-        transform: translateY(0) translateX(150vw); /* Cuối cùng, con ong trở lại vị trí ban đầu */
+        transform: translateY(0) translateX(150vw) ;
     }
 }
-.letter-img{
-    width: 50%;
-    background-size: cover; /* Hiển thị hình ảnh đầy đủ không bị méo */
-    background-repeat: no-repeat; /* Không lặp lại hình nền */
+.letter-img {
+    display: none;
+    position: fixed;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    
 }
+.letter-img img{
+    width: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
+#exampleModal{
+    color: var(--cl-pink);
 }
